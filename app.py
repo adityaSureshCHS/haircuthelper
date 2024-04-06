@@ -6,10 +6,12 @@ app = Flask(__name__)
 
 @app.route("/")
 def mainpage():
-    image = cv2.imread('images/cut5.jpeg', 0)
-    cv2.imshow("text", image)
     return render_template("mainpage.html")
 
-
-
-app.run();
+def display_image():
+    image = cv2.imread('images/cut5.jpeg', 0)
+    cv2.imshow("text", image)
+    cv2.waitKey(5)
+    cv2.destroyAllWindows()
+    
+display_image()
