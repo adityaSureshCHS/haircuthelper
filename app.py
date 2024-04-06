@@ -6,12 +6,16 @@ app = Flask(__name__)
 
 @app.route("/")
 def mainpage():
-    return render_template("mainpage.html")
+    return render_template("mainpage.html", upload = url_for("upload"))
 
-def display_image():
-    image = cv2.imread('images/cut5.jpeg', 0)
-    cv2.imshow("text", image)
-    cv2.waitKey(5)
-    cv2.destroyAllWindows()
-    
-display_image()
+@app.route("/upload")
+def upload():
+    return render_template("uploadphoto.html", results = url_for("results"))
+
+@app.route("/results", methods=["POST", "GET"])
+def results():
+    if request.method == 'POST':
+        return render_template("results.html")
+    else:
+        return render_template("results.html")
+

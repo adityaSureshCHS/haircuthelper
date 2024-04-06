@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Picture Taker</title>
@@ -101,7 +102,6 @@
   <p class="description">Click the button below to capture a picture of your face ship.</p>
   <video id="camera-view" autoplay></video>
   <button class="button" onclick="takePicture()">Take Picture</button>
-  <button class="button" onclick="proceedToResults()">Proceed to Results</button>
 </div>
 
 <script>
@@ -126,6 +126,19 @@
     ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
     var dataURL = canvas.toDataURL('image/png');
     console.log('Captured picture: ', dataURL);
+    const data = [dataURL];
+    $.ajax({
+      type: "POST",
+      url:"{{results}}",
+      data: dataURL,
+      success: function(result){
+        $.ajax({
+          type: "GET",
+          url: "{{results}}"
+        })
+      }
+    })
+    
     // You can send the dataURL to the server for further processing or display it on the page
   }
 
