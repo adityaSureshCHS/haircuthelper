@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Picture Taker</title>
+<style>
+  body, html {
+    height: 100%;
+    margin: 0;
+    font-family: 'Roboto', sans-serif; 
+    background: linear-gradient(135deg, #ff5f6d 10%, #ffc3a0 100%); 
+    color: #ffffff; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  .container {
+    max-width: 900px;
+    padding: 40px;
+    border-radius: 25px;
+    background: rgba(255, 255, 255, 0.8); 
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.5); 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: fadeIn 1s ease-out;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .title {
+    font-size: 3.5rem;
+    color: #ff2e63; 
+    margin: 20px 0;
+    text-shadow: 2px 2px 8px #ff2e63;
+  }
+  .description {
+    font-size: 1.25rem;
+    margin-bottom: 30px;
+    color: #333; 
+    line-height: 1.6;
+    max-width: 700px;
+  }
+  .button {
+    padding: 1rem 2.5rem;
+    font-size: 1.25rem;
+    background-image: linear-gradient(to right, #ff5f6d, #ffc3a0); 
+    color: #fff;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out, background-color 0.2s ease-in-out;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  }
+  .button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+    background-color: #ff3f57; 
+  }
+  .icons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 30px;
+  }
+  .icon {
+    background-color: #ff2e63; 
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease-in-out;
+  }
+  .icon:hover {
+    transform: rotate(15deg);
+  }
+  .icon img {
+    width: 30px;
+    height: 30px;
+  }
+  #camera-view {
+    width: 100%;
+    height: auto;
+    max-width: 500px;
+    margin-bottom: 20px;
+    border-radius: 15px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  
+  <h1 class="title">Picture Taker</h1>
+  <p class="description">Click the button below to capture a picture of your injury.</p>
+  <video id="camera-view" autoplay></video>
+  <button class="button" onclick="takePicture()">Take Picture</button>
+</div>
+
+<script>
+  // Access the camera and display the video stream
+  navigator.mediaDevices.getUserMedia({ video: true })
+    .then(function(stream) {
+      var video = document.getElementById('camera-view');
+      video.srcObject = stream;
+      video.play();
+    })
+    .catch(function(err) {
+      console.log('Error accessing the camera: ', err);
+    });
+
+  // Function to capture the picture
+  function takePicture() {
+    var video = document.getElementById('camera-view');
+    var canvas = document.createElement('canvas');
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+    var ctx = canvas.getContext('2d');
+    ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+    var dataURL = canvas.toDataURL('image/png');
+    console.log('Captured picture: ', dataURL);
+    // You can send the dataURL to the server for further processing or display it on the page
+  }
+</script>
+
+</body>
+</html>
