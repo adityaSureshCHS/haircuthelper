@@ -55,6 +55,7 @@
     cursor: pointer;
     transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out, background-color 0.2s ease-in-out;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px; /* Adjusted margin-bottom */
   }
   .button:hover {
     transform: scale(1.05);
@@ -100,6 +101,7 @@
   <p class="description">Click the button below to capture a picture of your injury.</p>
   <video id="camera-view" autoplay></video>
   <button class="button" onclick="takePicture()">Take Picture</button>
+  <button class="button" onclick="proceedToResults()">Proceed to Results</button>
 </div>
 
 <script>
@@ -125,6 +127,11 @@
     var dataURL = canvas.toDataURL('image/png');
     console.log('Captured picture: ', dataURL);
     // You can send the dataURL to the server for further processing or display it on the page
+  }
+
+  // Function to proceed to results page
+  function proceedToResults() {
+    window.location.href = "results.html";
   }
 </script>
 
