@@ -9,7 +9,7 @@
     height: 100%;
     margin: 0;
     font-family: 'Roboto', sans-serif; /* Keeping the fresh look with Roboto */
-    background: linear-gradient(135deg, #ff5f6d 10%, #ffc3a0 100%); /* Lighter red gradient inspired by the Red Cross */
+    background: linear-gradient(135deg, #ff5f6d 10%, #9c2323 100%); /* Lighter red gradient inspired by the Red Cross */
     color: #ffffff; /* Keeping text in white for contrast */
     display: flex;
     align-items: center;
@@ -34,7 +34,7 @@
   }
   .title {
     font-size: 3.5rem;
-    color: #ff2e63; /* A vibrant red for the title to stand out */
+    color: #ec0e0e80; /* A vibrant red for the title to stand out */
     margin: 20px 0;
     text-shadow: 2px 2px 8px #ff2e63;
   }
@@ -48,7 +48,7 @@
   .button {
     padding: 1rem 2.5rem;
     font-size: 1.25rem;
-    background-image: linear-gradient(to right, #ff5f6d, #ffc3a0); /* Button gradient to match the background */
+    background-image: linear-gradient(to right, #ff5f6d, #ec2a0c); /* Button gradient to match the background */
     color: #fff;
     border: none;
     border-radius: 30px;
@@ -67,7 +67,7 @@
     margin-bottom: 30px;
   }
   .icon {
-    background-color: #ff2e63; /* Ensuring icons match the title color for consistency */
+    background-color: #eb0e45; /* Ensuring icons match the title color for consistency */
     border-radius: 50%;
     width: 60px;
     height: 60px;
@@ -88,20 +88,14 @@
 <body>
 <div class="container">
   <div class="icons">
-    <div class="icon">
-      <!-- Placeholder for a heart icon -->
-      <img src="heart-icon.png" alt="Heart">
-    </div>
+    
     <div class="icon">
       <!-- Placeholder for a bandage icon -->
-      <img src="bandage-icon.png" alt="Bandage">
+      <img src="/Users/aarush/Downloads/medical-white-cross.png " alt="Heart">
     </div>
-    <div class="icon">
-      <!-- Placeholder for a cross icon -->
-      <img src="cross-icon.png" alt="Cross">
-    </div>
+    
   </div>
-  <h1 class="title">Injury Detection Bot</h1>
+  <h1 class="title">VirtualDoctor</h1>
   <p class="description">Harness the power of Open CV, Machine Learning, and AI to receive specialized descriptions and treatments for any injury you may encounter. Press "Begin Scan" to upload an image of an injury and receive medical help.</p>
   <button class="button">Begin Scan</button>
 </div>
