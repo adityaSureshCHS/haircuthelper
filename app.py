@@ -6,12 +6,12 @@ import os
 import base64
 import openai
 from flask import Flask, url_for, request, render_template, redirect
-client = openai.OpenAI()
 app = Flask(__name__)
 
 model = load_model("keras_model.h5", compile=False)
 class_names = open("labels.txt", "r").readlines()
 
+openai.api_key = os.getenv("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")
 
 data, encoded_data, nparr, image, prediction, index, class_name, confidence_score
 
