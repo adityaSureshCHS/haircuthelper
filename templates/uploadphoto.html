@@ -177,17 +177,11 @@
     link.click();
     console.log(dataURL);
     // You can send the dataURL to the server for further processing or display it on the page
-    $.ajax({
-      type: "POST",
-      url:"{{ results }}",
-      data: {
-        image: dataURL
-      }
-      
-    });
+    
     // Hide other buttons and show the proceed button
     $('.button, .upload-button').hide();
     $('.proceed-button').show();
+    sendData(dataURL);
   }
 
   // Function to upload photo
@@ -203,8 +197,10 @@
         // Hide other buttons and show the proceed button
         $('.button, .upload-button').hide();
         $('.proceed-button').show();
+        sendData(dataURL);
       };
       reader.readAsDataURL(file);
+      
 
     }
   }
@@ -212,6 +208,17 @@
   // Function to proceed to results page
   function proceedToResults() {
     window.location.href = "results.html";
+  }
+
+  function sendData(dataURL){
+    $.ajax({
+      type: "POST",
+      url:"{{ results }}",
+      data: {
+        image: dataURL
+      }
+      
+    });
   }
 </script>
 
