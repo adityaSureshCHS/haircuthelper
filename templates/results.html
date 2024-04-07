@@ -9,7 +9,7 @@
     height: 100%;
     margin: 0;
     font-family: 'Roboto', sans-serif; 
-    background: linear-gradient(135deg, #ff5f6d 10%, #9c2323 100%); 
+    background: linear-gradient(135deg, #d1b089 10%, #e17917 100%);
     color: #ffffff; 
     display: flex;
     align-items: center;
@@ -20,9 +20,9 @@
     max-width: 900px;
     padding: 40px;
     border-radius: 25px;
-    background: rgba(255, 255, 255, 0.8); 
+    background: #242426;
     backdrop-filter: blur(5px);
-    border: 1px solid rgba(255, 255, 255, 0.5); 
+    border: 1px solid #3a3a3c;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -34,38 +34,40 @@
   }
   .title {
     font-size: 3.5rem;
-    color: #ec0e0e80; 
+    color: #d1b089; /* Adjusted title color */
     margin: 20px 0;
-    text-shadow: 2px 2px 8px #ff2e63;
+    text-shadow: 1px 1px 4px #e2ad72;
   }
   .section {
     margin-bottom: 30px;
-    color: #333; 
+    color: #d1b089; 
     line-height: 1.6;
     max-width: 700px;
   }
   .button {
     padding: 1rem 2.5rem;
     font-size: 1.25rem;
-    background-image: linear-gradient(to right, #ff5f6d, #ec2a0c); 
+    background-color: #4a4a4c;
     color: #fff;
     border: none;
     border-radius: 30px;
     cursor: pointer;
     transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out, background-color 0.2s ease-in-out;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px; /* Adjusted margin-bottom */
   }
   .button:hover {
     transform: scale(1.05);
+    background-color: #626264; /* Slightly lighter grey on hover */
     box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
-    background-color: #ff3f57; 
+    
   }
 </style>
 </head>
 <body>
 <div class="container">
   
-  <h1 class="title">Injury Diagnosis</h1>
+  <h1 class="title">Haircut feedback and recommendations</h1>
   <section class="section">
     <h2>Diagnosis</h2>
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis turpis quis metus dignissim ullamcorper. Quisque congue auctor ipsum, nec fermentum enim.</p>
