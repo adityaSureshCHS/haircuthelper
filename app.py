@@ -10,7 +10,7 @@ app = Flask(__name__)
 model = load_model("keras_model.h5", compile=False)
 class_names = open("labels.txt", "r").readlines()
 
-
+#hi
 
 @app.route("/")
 def mainpage():
@@ -45,24 +45,9 @@ def results():
         # Print prediction and confidence score
         print("Class:", class_name[2:], end="")
         print("Confidence Score:", str(np.round(confidence_score * 100))[:-2], "%")
-        #image = data['image']
-        #print(image)
-        print("hi")
         
         
         return render_template("results.html")
     else:
         return render_template("results.html")
 
-def image_resize(image, width = None, height = None, inter = cv2.INTER_AREA):
-    # initialize the dimensions of the image to be resized and
-    # grab the image size
-    dim = None
-    (h, w) = image.shape[:2]
-
-
-    # resize the image
-    resized = cv2.resize(image, dim, interpolation = inter)
-
-    # return the resized image
-    return resized
