@@ -27,14 +27,14 @@ def results():
         nparr = np.fromstring(base64.b64decode(encoded_data), np.uint8)
         image = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
         # Make the image a numpy array and reshape it to the models input shape.
-        cv2.resize(image, (224, 224), interpolation=cv2.INTER_AREA)
+        image = cv2.resize(image, (224, 224))
         print(image.shape[0])
         print(image.shape[1])
         
-        #image = np.asarray(image, dtype=np.float32).reshape(1, 224, 224, -1)
+        image = np.asarray(image, dtype=np.float32).reshape(1, 224, 224, -1)
 
         # Normalize the image array
-        '''image = (image / 127.5) - 1'''
+        image = (image / 127.5) - 1
 
         # Predicts the model
         prediction = model.predict(image)
@@ -54,3 +54,15 @@ def results():
     else:
         return render_template("results.html")
 
+def image_resize(image, width = None, height = None, inter = cv2.INTER_AREA):
+    # initialize the dimensions of the image to be resized and
+    # grab the image size
+    dim = None
+    (h, w) = image.shape[:2]
+
+
+    # resize the image
+    resized = cv2.resize(image, dim, interpolation = inter)
+
+    # return the resized image
+    return resized
