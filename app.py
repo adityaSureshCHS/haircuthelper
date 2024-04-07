@@ -4,14 +4,12 @@ from keras.models import load_model
 import cv2
 import numpy as np
 import matplotlib.pyplot as plt
-from openai import OpenAI
+import openai
 import os
 import base64
 from flask import Flask, url_for, request, render_template, redirect
 app = Flask(__name__)
-client = OpenAI(
-    api_key=os.environ.get("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")
-)
+client = openai.OpenAI()
 model = load_model("keras_model.h5", compile=False)
 class_names = open("labels.txt", "r").readlines()
 
@@ -64,7 +62,7 @@ def results():
         global class_name
         class_name= class_names[index]
         global confidence_score 
-        onfidence_score = prediction[0][index]
+        confidence_score = prediction[0][index]
         global haircuts 
         haircuts = whatType(class_name, confidence_score*100)
 
