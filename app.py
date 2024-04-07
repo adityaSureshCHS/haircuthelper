@@ -12,7 +12,6 @@ app = Flask(__name__)
 model = load_model("keras_model.h5", compile=False)
 class_names = open("labels.txt", "r").readlines()
 
-openai.api_key = os.getenv("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")
 
 data, encoded_data, nparr, image, prediction, index, class_name, confidence_score
 
