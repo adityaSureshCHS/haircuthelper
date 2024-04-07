@@ -94,6 +94,26 @@
     margin-bottom: 20px;
     border-radius: 15px;
   }
+  .file-input {
+    display: none; /* Hide the input initially */
+  }
+  .upload-button {
+    padding: 1rem 2.5rem;
+    font-size: 1.25rem;
+    background-color: #4a4a4c;
+    color: #fff;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out, background-color 0.2s ease-in-out;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px; /* Adjusted margin-bottom */
+  }
+  .upload-button:hover {
+    transform: scale(1.05);
+    background-color: #626264; /* Slightly lighter grey on hover */
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+  }
 </style>
 </head>
 <body>
@@ -103,6 +123,8 @@
   <p class="description">Click the button below to capture a picture of your face shape.</p>
   <video id="camera-view" autoplay></video>
   <button class="button" onclick="takePicture()">Take Picture</button>
+  <input type="file" accept="image/*" class="file-input" id="upload-input" onchange="uploadPicture(event)">
+  <label for="upload-input" class="upload-button">Upload Photo</label>
   <button class="button" onclick="proceedToResults()">Proceed</button>
   
 
@@ -136,16 +158,21 @@
     document.body.appendChild(link); // Append the link to the document body
     link.click();
     console.log(dataURL);
-    $.ajax({
-      type: "POST",
-      url:"{{ results }}",
-      data: {
-        image: dataURL
-      }
-      
-    });
-    
     // You can send the dataURL to the server for further processing or display it on the page
+  }
+
+  // Function to upload photo
+  function uploadPicture(event) {
+    var file = event.target.files[0];
+    if (file) {
+      var reader = new FileReader();
+      reader.onload = function(e) {
+        var dataURL = e.target.result;
+        console.log(dataURL);
+        // You can send the dataURL to the server for further processing or display it on the page
+      };
+      reader.readAsDataURL(file);
+    }
   }
 
   // Function to proceed to results page
