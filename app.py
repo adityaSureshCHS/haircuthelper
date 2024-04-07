@@ -4,14 +4,12 @@ from keras.models import load_model
 import cv2
 import numpy as np
 import matplotlib.pyplot as plt
-from openai import OpenAI
+
 import os
 import base64
 from flask import Flask, url_for, request, render_template, redirect
 app = Flask(__name__)
-client = OpenAI(
-    api_key=os.environ.get("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")
-)
+
 model = load_model("keras_model.h5", compile=False)
 class_names = open("labels.txt", "r").readlines()
 
@@ -64,10 +62,10 @@ def results():
         global class_name
         class_name= class_names[index]
         global confidence_score 
-        onfidence_score = prediction[0][index]
+        confidence_score = prediction[0][index]
         global haircuts 
         haircuts = whatType(class_name, confidence_score*100)
-
+        print(haircuts)
         # Print prediction and confidence score
         print("Class:", class_name[2:], end="")
         print("Confidence Score:", str(np.round(confidence_score * 100))[:-2], "%")
@@ -75,19 +73,7 @@ def results():
 @app.route("/display_analysis")
 def display_analysis():
     final_data = []
-    for i in haircuts:
-        cv2.imwrite("displayedimage1.png", image)
-        response = client.images.edit(
-            model="dall-e-3",
-            image=open("displayedimage1.png", "rb"),
-            mask=open("images-removebg-preview.png", "rb"),
-            prompt="Keep the entire base image except change the haircut to a " + haircuts[i],
-            n=1
-        )
-        image_url = response.data[0].url
-        final_data.append(image_url)
-    
-    render_template("results.html", final_data = final_data, haircuts=haircuts)
+    render_template("results.html", style1=haircuts[0], style2=haircuts[1])
 
 def whatType(confScore, percent): 
 

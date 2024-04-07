@@ -143,7 +143,7 @@
   <button class="button" onclick="takePicture()">Take Picture</button>
   <input type="file" accept="image/*" class="file-input" id="upload-input" onchange="uploadPicture(event)">
   <label for="upload-input" class="upload-button">Upload Photo</label>
-  <button class="proceed-button" onclick="proceedToResults()">Proceed</button>
+  <a href="{{ url_for('display_analysis' }}"> Proceed </a>
   
 
 </div>
@@ -205,10 +205,6 @@
     }
   }
 
-  // Function to proceed to results page
-  function proceedToResults() {
-    window.location.href = "results.html";
-  }
 
   function sendData(dataURL){
     $.ajax({
