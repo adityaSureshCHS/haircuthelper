@@ -8,9 +8,9 @@
   body, html {
     height: 100%;
     margin: 0;
-    font-family: 'Roboto', sans-serif; /* Keeping the fresh look with Roboto */
-    background: linear-gradient(135deg, #ff5f6d 10%, #9c2323 100%); /* Lighter red gradient inspired by the Red Cross */
-    color: #ffffff; /* Keeping text in white for contrast */
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(135deg, #d1b089 10%, #e17917 100%);
+    color: #f0f0f0;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -20,9 +20,9 @@
     max-width: 900px;
     padding: 40px;
     border-radius: 25px;
-    background: rgba(255, 255, 255, 0.8); /* Light background for container to enhance readability */
+    background: #242426; /* Darker background for the container */
     backdrop-filter: blur(5px);
-    border: 1px solid rgba(255, 255, 255, 0.5); /* Softer border for a gentle look */
+    border: 1px solid #3a3a3c; /* Dark border for depth */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -34,22 +34,22 @@
   }
   .title {
     font-size: 3.5rem;
-    color: #ec0e0e80; /* A vibrant red for the title to stand out */
+    color: #d1b089; /* Lighter grey for the title to stand out */
     margin: 20px 0;
-    text-shadow: 2px 2px 8px #ff2e63;
+    text-shadow: 1px 1px 4px #e2ad72;
   }
   .description {
     font-size: 1.25rem;
     margin-bottom: 30px;
-    color: #333; /* Darker color for text to improve readability on a light background */
+    color: #d1b089; /* Light grey for readable contrast */
     line-height: 1.6;
     max-width: 700px;
   }
   .button {
     padding: 1rem 2.5rem;
     font-size: 1.25rem;
-    background-image: linear-gradient(to right, #ff5f6d, #ec2a0c); /* Button gradient to match the background */
-    color: #fff;
+    background-color: #4a4a4c; /* Dark grey for buttons */
+    color: #fff; /* Keeping text color white for contrast */
     border: none;
     border-radius: 30px;
     cursor: pointer;
@@ -57,7 +57,7 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
   }
   .button:hover {
-    transform: scale(1.05);
+    background-color: #626264; /* Slightly lighter grey on hover */
     box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
   }
   .icons {
@@ -67,7 +67,7 @@
     margin-bottom: 30px;
   }
   .icon {
-    background-color: #eb0e45; /* Ensuring icons match the title color for consistency */
+    background-color: #3a3a3c; /* Matching dark theme */
     border-radius: 50%;
     width: 60px;
     height: 60px;
@@ -88,23 +88,16 @@
 <body>
 <div class="container">
   <div class="icons">
-    
     <div class="icon">
-      
-      <img src="https://cdn.discordapp.com/attachments/1184584006310822018/1226273163416178728/medical-white-cross.png?ex=66242ae1&is=6611b5e1&hm=c1e09a7e839bb80184c2062c364432880b29afa134bcc8ae3a2d5de35b605cbb& " alt="Heart">
+      <!-- Icon placeholder -->
+      <img src="your-icon-link.png" alt="Icon">
     </div>
-    
   </div>
   <h1 class="title">HaircutHelper</h1>
-  <p class="description">Harness the power of Open CV, Machine Learning, and AI to receive specialized haircut recommendation for any face shape. Take a picture of your face using our camera and get specialized feedback and recommendation on haircuts. </p>
+  <p class="description">Harness the power of Open CV, Machine Learning, and AI to receive specialized haircut recommendations for any face shape. Take a picture of your face using our camera and get specialized feedback and recommendation on haircuts.</p>
   <a href="uploadphoto.html">
     <button class="button">Begin Scan</button>
   </a>
-  
 </div>
-<script> 
-  
-
-</script>
 </body>
 </html>
