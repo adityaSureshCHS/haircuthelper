@@ -129,19 +129,15 @@
     var ctx = canvas.getContext('2d');
     ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
     var dataURL = canvas.toDataURL('image/png');
-    console.log('Captured picture: ', dataURL);
-    const data = [dataURL];
+    console.log(dataURL);
     $.ajax({
       type: "POST",
-      url:"{{results}}",
-      data: dataURL,
-      success: function(result){
-        $.ajax({
-          type: "GET",
-          url: "{{results}}"
-        })
+      url:"{{ results }}",
+      data: {
+        image: dataURL
       }
-    })
+      
+    });
     
     // You can send the dataURL to the server for further processing or display it on the page
   }
