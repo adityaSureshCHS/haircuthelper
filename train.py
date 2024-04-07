@@ -1,18 +1,18 @@
 import numpy as np
-import pandas as pd
+#import pandas as pd
 
 
-image_data = np.load('images/women/testing_set','images/men/testing_set','images/women/training_set','images/men/training_set')
+#image_data = np.load('images\women\testing_set','images\men\testing_set','images\women\training_set','images\men\training_set')
+image_data = np.load('imgds.npy')
 
 labels = ['oval','rectangular','round','square']
 
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 
 
 from skimage.color import rgb2gray
 
 gray_data = rgb2gray(image_data)
-
 
 
 seen = set()
