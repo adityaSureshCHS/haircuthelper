@@ -6,6 +6,7 @@ import os
 import base64
 import openai
 from flask import Flask, url_for, request, render_template, redirect
+client = openai.OpenAI()
 app = Flask(__name__)
 
 model = load_model("keras_model.h5", compile=False)
