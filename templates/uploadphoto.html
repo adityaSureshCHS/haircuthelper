@@ -177,7 +177,14 @@
     link.click();
     console.log(dataURL);
     // You can send the dataURL to the server for further processing or display it on the page
-
+    $.ajax({
+      type: "POST",
+      url:"{{ results }}",
+      data: {
+        image: dataURL
+      }
+      
+    });
     // Hide other buttons and show the proceed button
     $('.button, .upload-button').hide();
     $('.proceed-button').show();
