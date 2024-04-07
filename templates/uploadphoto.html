@@ -128,7 +128,13 @@
     canvas.height = video.videoHeight;
     var ctx = canvas.getContext('2d');
     ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+    
     var dataURL = canvas.toDataURL('image/png');
+    var link = document.createElement('a');
+    link.href = dataURL;
+    link.download = 'captured_photo.png'; // Specify the filename
+    document.body.appendChild(link); // Append the link to the document body
+    link.click();
     console.log(dataURL);
     $.ajax({
       type: "POST",
