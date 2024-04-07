@@ -1,3 +1,5 @@
+import train
+
 import numpy as np
 import numpy as np
 import matplotlib.pyplot as plt
@@ -20,53 +22,6 @@ from torch.cuda.amp import GradScaler
 from sklearn.metrics import accuracy_score
 import resize
 import safe_pil_loader
-#import pandas as pd
-
-
-train_transforms = T.Compose([
-        T.Resize((224, 224)),
-        T.RandomHorizontalFlip(),
-        T.RandomRotation(degrees=10),
-        T.ColorJitter(brightness=0.2, contrast=0.2, saturation=0.2, hue=0.1),
-        T.ToTensor(),
-        T.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]) 
-    ])
-
-test_transforms = T.Compose([
-        T.Resize((224, 224)),
-        T.ToTensor(),
-        T.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]) 
-])
-
-
-
-
-    
-
-        
-
-    #image_data = np.load('images\women\testing_set','images\men\testing_set','images\women\training_set','images\men\training_set')
-    #image_data = np.load('imgds.npy')     
-
-image_data = datasets.ImageFolder(root=r"C:\Users\gauta\OneDrive\Documents\GitHub\injurydetection\images", transform=train_transforms, loader=safe_pil_loader)
-#test_dataset = datasets.ImageFolder(root=TEST_PATH, transform=test_transforms, loader=safe_pil_loader)
-BATCH_SIZE = 64
-NUM_WORKERS = os.cpu_count() - 1
-
-loader = DataLoader(image_data, batch_size=BATCH_SIZE, shuffle=True, num_workers=NUM_WORKERS)
-
-#image_data = np.load('images\women\testing_set','images\men\testing_set','images\women\training_set','images\men\training_set')
-#image_data = np.load('imgds.npy')
-dataiter  = NotImplemented
-images = NotImplemented
-labels = NotImplemented
-while True:
-    print("yes")
-    if __name__ == '__iter__':
-            
-            dataiter = iter(loader)
-            images, labels = next(dataiter)
-            break
 
 if(images is not NotImplemented and labels is not NotImplemented):
         #test_loader = DataLoader(test_dataset, batch_size=BATCH_SIZE, shuffle=False, num_workers=NUM_WORKERS)
