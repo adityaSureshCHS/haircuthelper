@@ -114,6 +114,24 @@
     background-color: #626264; /* Slightly lighter grey on hover */
     box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
   }
+  .proceed-button {
+    padding: 1rem 2.5rem;
+    font-size: 1.25rem;
+    background-color: #4a4a4c;
+    color: #fff;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out, background-color 0.2s ease-in-out;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px; /* Adjusted margin-bottom */
+    display: none; /* Hide the button initially */
+  }
+  .proceed-button:hover {
+    transform: scale(1.05);
+    background-color: #626264; /* Slightly lighter grey on hover */
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+  }
 </style>
 </head>
 <body>
@@ -125,7 +143,7 @@
   <button class="button" onclick="takePicture()">Take Picture</button>
   <input type="file" accept="image/*" class="file-input" id="upload-input" onchange="uploadPicture(event)">
   <label for="upload-input" class="upload-button">Upload Photo</label>
-  <button class="button" onclick="proceedToResults()">Proceed</button>
+  <button class="proceed-button" onclick="proceedToResults()">Proceed</button>
   
 
 </div>
@@ -159,6 +177,10 @@
     link.click();
     console.log(dataURL);
     // You can send the dataURL to the server for further processing or display it on the page
+
+    // Hide other buttons and show the proceed button
+    $('.button, .upload-button').hide();
+    $('.proceed-button').show();
   }
 
   // Function to upload photo
@@ -170,8 +192,13 @@
         var dataURL = e.target.result;
         console.log(dataURL);
         // You can send the dataURL to the server for further processing or display it on the page
+
+        // Hide other buttons and show the proceed button
+        $('.button, .upload-button').hide();
+        $('.proceed-button').show();
       };
       reader.readAsDataURL(file);
+
     }
   }
 
