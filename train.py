@@ -9,22 +9,21 @@ labels = ['oval','rectangular','round','square']
 
 #import matplotlib.pyplot as plt
 
-
+print(image_data.shape)
 from skimage.color import rgb2gray
 
-gray_data = rgb2gray(image_data)
+#gray_data = rgb2gray(image_data)
 
 
-seen = set()
-for i, label in enumerate (labels):
-    if label in seen:
-        continue
-    seen.add(label)
-   
+#seen = set()
+#for i, label in enumerate (labels):
+ #   if label in seen:
+  #      continue
+   # seen.add(label)#
 
-    from sklearn.model_selection import train_test_split
+from sklearn.model_selection import train_test_split
 
-X_train, X_test, y_train, y_test = train_test_split(gray_data,labels,test_size=0.2,random_state = 42)
+X_train, X_test, y_train, y_test = train_test_split(image_data,labels,test_size=0.2,random_state = 42)
 
 
 
@@ -62,8 +61,8 @@ def image_resize(image, width = None, height = None, inter = cv2.INTER_AREA):
     return resized
 
 from sklearn.metrics import confusion_matrix
-gray_data.shape
-reshaped_gray_data = gray_data.reshape((-1,64*64))
+image_data.shape
+reshaped_gray_data = image_data.reshape((-1,64*64))
 reshaped_gray_data.shape
 from sklearn import preprocessing
 le = preprocessing.LabelEncoder()
