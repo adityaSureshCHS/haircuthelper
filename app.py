@@ -1,12 +1,17 @@
+import requests
+import json
 from keras.models import load_model
 import cv2
 import numpy as np
 import matplotlib.pyplot as plt
+from openai import OpenAI
 import os
 import base64
 from flask import Flask, url_for, request, render_template, redirect
 app = Flask(__name__)
-
+client = OpenAI(
+    api_key=os.environ.get("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")
+)
 model = load_model("keras_model.h5", compile=False)
 class_names = open("labels.txt", "r").readlines()
 
@@ -33,9 +38,13 @@ def upload():
 @app.route("/results", methods=["POST", "GET"])
 def results():
     if request.method == 'POST':
+        global data
         data = request.form['image']
+        global encoded_data 
         encoded_data = data.split(',')[1]
+        global nparr 
         nparr = np.fromstring(base64.b64decode(encoded_data), np.uint8)
+        global image
         image = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
         # Make the image a numpy array and reshape it to the models input shape.
         image = cv2.resize(image, (224, 224))
@@ -48,20 +57,38 @@ def results():
         image = (image / 127.5) - 1
 
         # Predicts the model
+        global prediction
         prediction = model.predict(image)
+        global index
         index = np.argmax(prediction)
-        class_name = class_names[index]
-        confidence_score = prediction[0][index]
-        whatType(class_name, confidence_score*100)
+        global class_name
+        class_name= class_names[index]
+        global confidence_score 
+        onfidence_score = prediction[0][index]
+        global haircuts 
+        haircuts = whatType(class_name, confidence_score*100)
 
         # Print prediction and confidence score
         print("Class:", class_name[2:], end="")
         print("Confidence Score:", str(np.round(confidence_score * 100))[:-2], "%")
-        
-        
-        return render_template("results.html")
-    else:
-        return render_template("results.html")
+    return redirect(url_for("display_analysis"))
+@app.route("/display_analysis")
+def display_analysis():
+    final_data = []
+    for i in haircuts:
+        cv2.imwrite("displayedimage1.png", image)
+        response = client.images.edit(
+            model="dall-e-3",
+            image=open("displayedimage1.png", "rb"),
+            mask=open("images-removebg-preview.png", "rb"),
+            prompt="Keep the entire base image except change the haircut to a " + haircuts[i],
+            n=1
+        )
+        image_url = response.data[0].url
+        final_data.append(image_url)
+    
+    render_template("results.html", final_data = final_data, haircuts=haircuts)
+
 def whatType(confScore, percent): 
 
     if(confScore =="Oval"): 
